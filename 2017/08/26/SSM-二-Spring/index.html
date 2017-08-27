@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="SSM," />
 
 
 
@@ -94,17 +94,24 @@
 
 
 
-<meta name="description" content="hello, every day!~">
+<meta name="description" content="前言MyBatis的一个强大之处就在于它的动态SQL能力。如果有用JDBC操作过数据库，就知道串联SQL字符是多么痛苦的一件事情，确保不能忘了空格或在列表的最后省略逗号……很简单，类似于Java.   if在动态SQL中所做的最通用的事情是包含部分where字句的条件如：   choose，when，otherwise有时不想应用所有的条件，相反我们想选择很多情况下的一种。和Java中的switc">
+<meta name="keywords" content="SSM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSM(二)----Spring">
+<meta property="og:title" content="SSM(二)----MyBatis动态SQL">
 <meta property="og:url" content="http://anyhml.github.io/2017/08/26/SSM-二-Spring/index.html">
 <meta property="og:site_name" content="球球_博客">
-<meta property="og:description" content="hello, every day!~">
+<meta property="og:description" content="前言MyBatis的一个强大之处就在于它的动态SQL能力。如果有用JDBC操作过数据库，就知道串联SQL字符是多么痛苦的一件事情，确保不能忘了空格或在列表的最后省略逗号……很简单，类似于Java.   if在动态SQL中所做的最通用的事情是包含部分where字句的条件如：   choose，when，otherwise有时不想应用所有的条件，相反我们想选择很多情况下的一种。和Java中的switc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T13:33:56.843Z">
+<meta property="og:image" content="http://i.imgur.com/6ftswwW.png">
+<meta property="og:image" content="http://i.imgur.com/twd1BFE.png">
+<meta property="og:image" content="http://i.imgur.com/qXb8lG4.png">
+<meta property="og:image" content="http://i.imgur.com/ETo0yET.png">
+<meta property="og:image" content="http://i.imgur.com/leTycEf.png">
+<meta property="og:updated_time" content="2017-08-27T08:32:41.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSM(二)----Spring">
-<meta name="twitter:description" content="hello, every day!~">
+<meta name="twitter:title" content="SSM(二)----MyBatis动态SQL">
+<meta name="twitter:description" content="前言MyBatis的一个强大之处就在于它的动态SQL能力。如果有用JDBC操作过数据库，就知道串联SQL字符是多么痛苦的一件事情，确保不能忘了空格或在列表的最后省略逗号……很简单，类似于Java.   if在动态SQL中所做的最通用的事情是包含部分where字句的条件如：   choose，when，otherwise有时不想应用所有的条件，相反我们想选择很多情况下的一种。和Java中的switc">
+<meta name="twitter:image" content="http://i.imgur.com/6ftswwW.png">
 
 
 
@@ -139,7 +146,7 @@
 
 
 
-  <title>SSM(二)----Spring | 球球_博客</title>
+  <title>SSM(二)----MyBatis动态SQL | 球球_博客</title>
   
 
 
@@ -299,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SSM(二)----Spring</h1>
+          <h1 class="post-title" itemprop="name headline">SSM(二)----MyBatis动态SQL</h1>
         
 
         <div class="post-meta">
@@ -322,6 +329,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -343,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  190
                 </span>
               
 
@@ -380,7 +409,14 @@
       
 
       
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>MyBatis的一个强大之处就在于它的动态SQL能力。如果有用JDBC操作过数据库，就知道串联SQL字符是多么痛苦的一件事情，确保不能忘了空格或在列表的最后省略逗号……<br>很简单，类似于Java.  </p>
+<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>在动态SQL中所做的最通用的事情是包含部分where字句的条件如：<br><img src="http://i.imgur.com/6ftswwW.png" alt="">  </p>
+<h2 id="choose，when，otherwise"><a href="#choose，when，otherwise" class="headerlink" title="choose，when，otherwise"></a>choose，when，otherwise</h2><p>有时不想应用所有的条件，相反我们想选择很多情况下的一种。和Java中的switch语句相似，提供了choose元素<br><img src="http://i.imgur.com/twd1BFE.png" alt="">  </p>
+<h2 id="trim，where，set"><a href="#trim，where，set" class="headerlink" title="trim，where，set"></a>trim，where，set</h2><ul>
+<li><trim>标签与<where>标签相似，并且额外提供了前缀后缀功能。<br><img src="http://i.imgur.com/qXb8lG4.png" alt="">  </where></trim></li>
+<li><set>标签：用于update语句<br><img src="http://i.imgur.com/ETo0yET.png" alt=""><br>可用<trim>标签替代<br><img src="http://i.imgur.com/leTycEf.png" alt=""><h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1>坚持最少一周一更……</trim></set></li>
+</ul>
+
       
     </div>
     
@@ -423,6 +459,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SSM/" rel="tag"># SSM</a>
+          
+        </div>
       
 
       
@@ -493,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -520,7 +571,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -580,6 +631,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if"><span class="nav-number">1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#choose，when，otherwise"><span class="nav-number">1.2.</span> <span class="nav-text">choose，when，otherwise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim，where，set"><span class="nav-number">1.3.</span> <span class="nav-text">trim，where，set</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">2.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
